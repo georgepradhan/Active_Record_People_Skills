@@ -11,8 +11,10 @@ class User < ActiveRecord::Base
   end
 
   def set_proficiency_for(skill, value)
+    self.skills << skill unless self.skills.include?(skill)
     current_proficiency = Proficiency.where(skill_id: skill.id, user_id: self.id).first
     current_proficiency.proficiency = value
     current_proficiency.save
   end
 end
+
