@@ -19,3 +19,8 @@ design_skills.each do |skill|
 end
 
 # TODO: create associations between users and skills
+User.all.each do |user|
+  user_skill = Skill.all.sample 
+  user.skills << user_skill
+  user.set_proficiency_for(user_skill, 1+rand(100))
+end
